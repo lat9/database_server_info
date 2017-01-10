@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Database Server Info</title>
+<link rel="icon" href="../vinos_favicon.ico" type="image/x-icon" />
+<link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+a, a:active, a:visited { color: #006666; text-decoration: none; }
+a:hover { color:#00CC99; text-decoration: underline; }
+body, p, h1, h2, h3, h4, h5, h6, li, td, dd, img, dt, dl, table { font-family: Roboto, verdana, avantgarde, tahoma, arial, sans-serif; font-size: 12pt; color: black; padding: 0px; margin: 10px 20px; line-height: 1.75em; }
+h1, h2, h3, h4 { font-weight: bold; padding: 5px; }
+h1 { font-size: 20px; text-align: center; border-bottom: 1px solid #666; }
+h2 { font-size: 16px; }
+h2, h3 { border: 1px solid #666; background-color: #eee; }
+h1+h3 { border: none; background-color: inherit; }
+h5 { border-bottom: 1px dashed #666; padding-bottom: 5px; }
+code.no-pad, pre.no-pad { padding: 0; margin: 0; }
+.tableHead { background-color: #eee; }
+ol li, ol li p { margin-left: 0; }
+img { margin: 0 20px; float: left; border: 1px solid #666; }
+img.in-line-img { float: none; border: none; }
+img.wide { width: 95%; float: none; margin: 0 2.5%; }
+table, td, th { border: 1px solid black; border-collapse: collapse; }
+td, th { padding: 5px; }
+th { text-align: left; }
+span.title { font-style: italic; font-weight: bold; color: #006666; }
+.corefile, .red { color: red; }
+.template { color: green; }
+.added { color: blue; }
+.removed { text-decoration: line-through; }
+.osh { color: blue; }
+.minspacing li { margin: 0; }
+.smallimg { float: left; width: auto; margin: 0.5% 0.25% 0.25% auto; }
+ol li, ul li { margin-top: 5px; margin-bottom: 5px; }
+ul li ul { padding-left: 0; }
+dt { font-weight: bold; margin-bottom: 0; }
+dd { margin-top: 0; padding-left: 40px; }
+.table { display: table; padding-left: 0.5%; font-size: smaller; }
+.head_outer, .item_outer { display: table-row; }
+.thead, .item { display: table-cell; padding: 0.25% 0.25%;}
+.thead { font-weight: bold; }
+.table ul { list-style-type: none; padding-left: 0; margin: 0; }
+.table ul li { margin: 0; }
+.c1 { text-align: center; font-weight: bold; width: 15%; color: #333333; vertical-align: top; }
+.c3 { vertical-align: top; }
+.clearBoth { clear: both; }
+.smaller { font-size: smaller; }
+.e { background-color: #eee; }
+ul.simple, ul.simple li { list-style-type: none; padding: 0 0 0 0.5em; margin: 0; }
+#table-config-osm tr td:first-child, #table-config-osm tr th:first-child { width: 30em; }
+#overview-images { margin-right: 0.5em; }
+.back { float: left; }
+#fdcv ol { margin: 0; }
+.nowrap { white-space: nowrap; }
+.h-name { font-style: italic; font-weight: bold; }
+#t-handlers td, #t-handlers th { vertical-align: top; }
+
+.etabs { margin: 0; padding: 0; }
+.tab { display: inline-block; zoom:1; *display:inline; background: #eee; border: solid 1px #999; border-bottom: none; border-radius: 4px 4px 0 0; margin: 0; }
+.tab a { font-size: 14px; line-height: 2em; display: block; padding: 0 10px; outline: none; }
+.tab a:hover { text-decoration: underline; }
+.tab.active { background: #fff; padding-top: 6px; position: relative; top: 1px; border-color: #666; }
+.tab a.active { font-weight: bold; }
+.tab-container .panel-container { background: #fff; border: solid #666 1px; padding: 10px; border-radius: 0 4px 4px 4px; }
+.panel-container { margin-bottom: 10px; }
+
+#dbio_layout { text-align: center; float: right; background-color: #ebebeb; }
+#dbio_layout2 { padding: 0; }
+#dbio_layout2 table, #dbio_layout2 td { margin: 0; border: none; }
+#dbio_layout2 tr:first-child td { border-bottom: 1px solid black; }
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> 
+<script src="../jquery.easytabs.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready( function() {
+        $('#tab-container').easytabs();
+    });
+</script>
+</head>
+
+<body>
+  <h1 id="title">Database Server Info</h1>
+  <p>Version 1.0.0.  Copyright &copy; 2017, <a href="http://vinosdefrutastropicales.com" target="_blank">Vinos de Frutas Tropicales</a>.</p>
+  <p>Current Support Thread on the Zen Cart forums: <a href="https://www.zen-cart.com/showthread.php?221686-Database-Server-Info-Support-Thread" target="_blank">https://www.zen-cart.com/showthread.php?221686-Database-Server-Info-Support-Thread</a></p>
+  
+  <div class="tab-container" id="outer-container">
+    <ul class="etabs">
+      <li class="tab"><a href="#overview">Overview</a></li>
+      <li class="tab"><a href="#installation">Installation</a></li>
+      <li class="tab"><a href="#history">Change History</a></li>
+    </ul>
+    
+    <div class="panel-container">
+  
+      <!-- start overview section -->
+      <div id="overview">
+        <noscript><h2>Overview</h2></noscript>
+        <p>I've run into a couple of instances where knowing the <em>MySQL Server</em> configuration for a store really helps to debug underlying issues.  This plugin updates the Zen Cart&reg; admin's <em>Tools-&gt;Server/Version Info</em> module to display that information.</p>
+        
+        <hr />  
+        <p>Once the plugin is installed, you'll see additional text at the top of that page's display containing a &quot;Quick Link&quot; to view the database information.</p>
+        <img class="in-line-img" src="view_link.jpg" alt="Quick Link for Database Information" title="Quick Link for Database Information" />
+        <p>Click that link (or scroll down the page) to view the result of a <code>MySQL SHOW VARIABLES</code> query, as illustrated below.</p> 
+        <img class="in-line-img" src="view_table.jpg" alt="Display Sample" title="Display Sample" />
+      </div>
+      <!-- end overview section -->
+    
+      <!-- start installation section -->
+      <div id="installation">
+        <noscript><h2>Installing or Uninstalling</h2></noscript>
+        <div class="tab-container" id="inner-container1">
+          
+          <p>This section identifies the processes you'll use to either install or uninstall the plugin.</p>
+          
+          <ul class="etabs">
+            <li class="tab"><a href="#initial">Installation</a></li>
+            <li class="tab"><a href="#uninstall">Uninstalling</a></li>
+          </ul>
+
+          <div class="panel-container">
+
+            <div id="initial">
+              <noscript><h3>Installation</h3></noscript>
+              <p>There are two admin-level <span class="corefile">core-file overwrites</span> required by this plugin; you should <strong>always</strong> backup your cart's database and files prior to making any changes. Unzip the plugin's package file and then:</p>
+              <ol type="A">
+                <li>Rename the YOUR_ADMIN folder to match your custom admin folder's name.</li>
+                <li>Copy the plugin's files to your store's folder structure:<ol>
+                  <li><span class="corefile">/YOUR_ADMIN/server_info.php</span></li>
+                  <li><span class="corefile">/YOUR_ADMIN/includes/languages/english/server_info.php</span></li>
+                </ol></li>
+              </ol>
+            </div>
+            
+            <div id="uninstall">
+              <noscript><h3>Uninstalling</h3></noscript>
+              <p>Restore the two (2) admin <span class="corefile">core-files</span> modified by this plugin.</p>
+            </div>
+
+          </div>
+        </div>
+       </div>
+       <!-- end installation section -->
+      
+      <!-- start history section -->
+      <div id="history">
+        <noscript><h3>Version History</h3></noscript>
+        <p>You can view the details of these changes on the plugin's <a href="https://github.com/lat9/database_server_info/issues" target="_blank">GitHub repository.</a></p>
+        <ul>
+          <li>v1.0.0, 2017-01-xx: Initial release.</li>
+        </ul>
+      </div>
+      <!-- end history section -->
+      
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $( '#outer-container, #inner-container1' ).easytabs();
+    
+    $( '.side-link' ).click( function() {
+        window.location.hash = $(this).attr( 'href' );
+        location.reload();
+    });
+  </script>
+</body>
+</html>
